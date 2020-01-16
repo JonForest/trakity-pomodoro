@@ -30,6 +30,7 @@
 
 ### Planned db schemas
 **pomodoros**
+
 |Col Name|Type|constraint|
 |---|---|---|
 |id|serial|Primary key|
@@ -38,6 +39,7 @@
 |status|serial|Enum status - started, stopped, finished|
 
 **users**
+
 |Col Name|Type|constraint|
 |---|---|---|
 |id|serial|Primary key|
