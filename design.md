@@ -44,6 +44,7 @@ In phase 1, the userId will always be set to -1. The user id of -1 will be a dem
 
 ### Planned db schemas
 **pomodoros**
+
 |Col Name|Type|constraint|
 |---|---|---|
 |id|serial|Primary key|
@@ -52,6 +53,7 @@ In phase 1, the userId will always be set to -1. The user id of -1 will be a dem
 |status|serial|Enum status - started, stopped, finished|
 
 **users**
+
 |Col Name|Type|constraint|
 |---|---|---|
 |id|serial|Primary key|
