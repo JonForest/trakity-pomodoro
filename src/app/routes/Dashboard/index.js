@@ -7,7 +7,7 @@ export default function Comp () {
   return (
     <Layout title="Dashboard">
       <div className="inline-block">
-        <Timer/>
+        <Timer />
         <StartButton/>
       </div>
     </Layout>
