@@ -1,7 +1,10 @@
 import React from 'react';
+import Layout from '../../components/Layout';
 
 export default function Comp () {
   return (
-    <h1>Component</h1>
+    <Layout title="Dashboard">
+
+    </Layout>
   );
 }
