@@ -52,8 +52,8 @@ In phase 1, the userId will always be set to -1. The user id of -1 will be a dem
 |Col Name|Type|constraint|
 |---|---|---|
 |id|serial|Primary key|
-|userId|serial|FK to users table|
-|start|datetime||
+|user_id|serial|FK to users table|
+|start|datetime with timezone||
 |status|serial|Enum status - started, stopped, finished|
 
 Can only be one started pomodoro that is less than 25 min old.
@@ -63,10 +63,10 @@ Can only be one started pomodoro that is less than 25 min old.
 |Col Name|Type|constraint|
 |---|---|---|
 |id|serial|Primary key|
-|idpId|text||
-|idpType|text|DEFAULT: "Auth0"|
+|idp_id|text||
+|idp_type|text|DEFAULT: "Auth0"|
 |email|text||
-|givenName|text||
+|given_name|text||
 
 
 todo: what do we need to store, if anything, from the IdP
@@ -86,4 +86,7 @@ todo: what do we need to store, if anything, from the IdP
 * What countdown logic/UI should we use? Need to investigate the animated count down
  https://codepen.io/ninjascribble/pen/rHwkK or https://codepen.io/cMack87/pen/rVmEQm code
 * Can the mutation that creates the pomodoro close down and existing ones?
- 
+
+#Actions
+* Lock down Hasura console access https://docs.hasura.io/1.0/graphql/manual/deployment/heroku/securing-graphql-endpoint.html 
+
