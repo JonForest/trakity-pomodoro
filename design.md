@@ -89,4 +89,4 @@ todo: what do we need to store, if anything, from the IdP
 
 #Actions
 * Lock down Hasura console access https://docs.hasura.io/1.0/graphql/manual/deployment/heroku/securing-graphql-endpoint.html 
-
+* Can I get the button looking like this? https://freebiesbug.com/psd-freebies/rounded-download-button-psd/

@@ -51,7 +51,7 @@ export default function Comp() {
   const [stopPomodoro, {loading: mutationLoading}] = useMutation(STOP_POMODORO);
   const [createPomodoro] = useMutation(CREATE_POMODORO);
 
-  const { loading, error, data } = useQuery(ACTIVE_POMODOROS, {
+  const { error, data } = useQuery(ACTIVE_POMODOROS, {
     variables: { time: timeCheck.toISOString() },
     pollInterval: 0
   });
@@ -63,13 +63,14 @@ export default function Comp() {
 
     if (pomodoros.length && (!pomodoro || (pomodoros[0].id !== pomodoro.id))) {
       // If the pomodoros query returns valid data and there is no current pomorodo then set it to the returned data
-      setPomodoro(pomodoros[0]);
-    } else if (!pomodoros.length && pomodoro !== null) {
+      // Need to set the startDate object here so re-renders don't change the Date object reference passed to the timer
+      setPomodoro({...pomodoros[0], startDate: new Date(pomodoros[0].start)});
+    } else if (!pomodoros.length && pomodoro?.id != null) {
       // if the pomodoros query returned no results, but the pomodoro is still set, then reset it to null
       setPomodoro(null);
     }
   } else {
-    if (pomodoro !== null) {
+    if (pomodoro?.id != null) {
       setPomodoro(null);
     }
   }
@@ -78,10 +79,13 @@ export default function Comp() {
     e.preventDefault();
     if (mutationLoading) return;
     if (pomodoro) {
-      // The timer has been stopped, so we need to stop in the progress pomodoro
+      // The timer has been stopped, so we need to stop the in-progress pomodoro
       stopPomodoro({variables: {id: pomodoro.id, status: 'stopped'}, refetchQueries: ['GetPomodoro']});
+      setPomodoro(null);
     } else {
-      createPomodoro({variables: {start: (new Date()).toISOString()}, refetchQueries: ['GetPomodoro']});
+      const startDate = new Date();
+      createPomodoro({variables: {start: startDate.toISOString()}, refetchQueries: ['GetPomodoro']});
+      setPomodoro({startDate}); // Kick off counter as soon as possible
     }
   }
 
@@ -94,11 +98,12 @@ export default function Comp() {
     // audio.play();
   }
 
+
   return (
     <Layout title="Dashboard">
       <div className="inline-block">
-        <Timer startTime={pomodoro ? new Date(pomodoro.start) : null} onFinish={timerCompleted} />
-        {!loading && <StartButton onClick={buttonClicked} started={!!pomodoro} />}
+        <Timer startTime={pomodoro ? pomodoro.startDate : null} onFinish={timerCompleted} />
+        <StartButton onClick={buttonClicked} started={!!pomodoro} />
       </div>
     </Layout>
   );
