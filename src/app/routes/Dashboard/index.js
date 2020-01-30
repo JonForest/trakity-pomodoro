@@ -4,12 +4,14 @@ import { gql } from 'apollo-boost';
 import Layout from '../../components/Layout';
 import StartButton from '../../components/StartButton';
 import Timer from '../../components/Timer';
+import TodaysCount from '../../components/TodaysCount'
 
 /**
  * This is not how I wanted this to work. The state is all sync'd from the database
  * The problem with this is that I'd need a completely separate code path for offline support.
  * Ideally I wanted to handle all the state internally and just communicate the key events back to the db, though
  * that may not work from a multi-device approach?
+ * Declarative versus Imperative etc
  */
 const ACTIVE_POMODOROS = gql`
   query GetPomodoro($time: timestamptz!) {
@@ -56,7 +58,7 @@ export default function Comp() {
     pollInterval: 0
   });
 
-  if (error) return <p>Connection error: {error}</p>;
+   if (error) return <p>{error.toString()}</p>;
 
   if (data) {
     const { pomodoros = []} = data;
@@ -81,7 +83,6 @@ export default function Comp() {
     if (pomodoro) {
       // The timer has been stopped, so we need to stop the in-progress pomodoro
       stopPomodoro({variables: {id: pomodoro.id, status: 'stopped'}, refetchQueries: ['GetPomodoro']});
-      setPomodoro(null);
     } else {
       const startDate = new Date();
       createPomodoro({variables: {start: startDate.toISOString()}, refetchQueries: ['GetPomodoro']});
@@ -97,13 +98,12 @@ export default function Comp() {
     // todo: this throws an error. Need to google to figure out how to play an alert sound on timeout
     // audio.play();
   }
-
-
   return (
     <Layout title="Dashboard">
       <div className="inline-block">
         <Timer startTime={pomodoro ? pomodoro.startDate : null} onFinish={timerCompleted} />
         <StartButton onClick={buttonClicked} started={!!pomodoro} />
+        <TodaysCount/>
       </div>
     </Layout>
   );
