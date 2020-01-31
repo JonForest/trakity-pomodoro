@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { secondsToDisplay, getRemainingSeconds } from '../../utils';
 
 export default function Timer({ startTime = null, onFinish }) {
-  const defaultDuration = 10//25 * 60; // 25 mins in seconds
+  const defaultDuration = 25 * 60; // 25 mins in seconds
   const defaultTime = secondsToDisplay(defaultDuration);
   const [displayTime, setDisplayTime] = useState(defaultTime);
 

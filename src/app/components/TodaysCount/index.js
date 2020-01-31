@@ -30,9 +30,9 @@ const getDayEnd = (today) =>
 export default function TodaysCount() {
   // get the date once; don't want it to be recalculated for each render
   const [today] = useState(new Date());
-  const { error, data } = useQuery(GET_TODAYS_COUNT, {
+  const { error, data, refetch } = useQuery(GET_TODAYS_COUNT, {
     variables: { timeStart: getDayStart(today).toISOString(), timeEnd: getDayEnd(today).toISOString() },
-    pollInterval: 0
+    pollInterval: 5000 // poll every five seconds
   });
 
   if (error) return <div className="mt-16">{error.toString()}</div>

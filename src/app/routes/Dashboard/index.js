@@ -46,7 +46,7 @@ const audio = new Audio('https://interactive-examples.mdn.mozilla.net/media/exam
 
 export default function Comp() {
   // Only want to fetch this on first render, so we don't need the set function
-  const [timeCheck] = useState(new Date(new Date().setTime(new Date().getTime() - 10 * 1000)));
+  const [timeCheck] = useState(new Date(new Date().setTime(new Date().getTime() - 25 * 60 * 1000)));
 
   const [pomodoro, setPomodoro] = useState(null);
 
@@ -87,6 +87,11 @@ export default function Comp() {
       const startDate = new Date();
       createPomodoro({variables: {start: startDate.toISOString()}, refetchQueries: ['GetPomodoro']});
       setPomodoro({startDate}); // Kick off counter as soon as possible
+
+      // Start and immediately pause the play of the audio. This to get around the 'user initiated action' requirement
+      // of playing sounds through the browser
+      audio.play();
+      audio.pause();
     }
   }
 
