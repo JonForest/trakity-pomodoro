@@ -96,7 +96,7 @@ export default function Comp() {
     stopPomodoro({variables: {id: pomodoro.id, status: 'finished'}, refetchQueries: ['GetPomodoro']});
 
     // todo: this throws an error. Need to google to figure out how to play an alert sound on timeout
-    // audio.play();
+    audio.play();
   }
   return (
     <Layout title="Dashboard">
