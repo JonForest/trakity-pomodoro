@@ -38,13 +38,12 @@ export default function Header({ className }) {
 
       {isOpen && (
         <div className="px-2 pb-3">
-          {/** <a href="#" className="mt-1 block px-2 py-1 text-white font-semibold rounded hover:bg-teal-700">
+          <Link to="/metrics" className="mt-1 block px-2 py-1 text-white font-semibold rounded hover:bg-teal-700">
             See metrics
-          </a>**/}
+          </Link>
           <button
             className="text-left w-full mt-1 block px-2 py-1 text-white font-semibold rounded hover:bg-teal-700"
             onClick={() => console.log('Logged out')}
-
           >
             Logout
           </button>

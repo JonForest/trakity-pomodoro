@@ -35,6 +35,8 @@ export default function TodaysCount() {
     pollInterval: 5000 // poll every five seconds
   });
 
-  if (error) return <div className="mt-16">{error.toString()}</div>
+  if (error) {
+    console.error(`Error fetching today's count`, error.toString());
+  }
   return <div className="mt-16">Todays Count: {data?.pomodoros_aggregate?.aggregate?.count || 0}</div>
 }
