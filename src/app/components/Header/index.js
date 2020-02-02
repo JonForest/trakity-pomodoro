@@ -19,10 +19,13 @@ export default function Header({ className }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className={`${className} bg-teal-800`}>
+    <header className={`${className} bg-black`}>
       <div className="flex items-center justify-between px-4 py-2">
         <div className="text-white">
-          <h1 className="font-sans tracking-mobile-title lg:tracking-title text-2xl lg:text-4xl">Trakity Pomdoro</h1>
+          <h1 className="ml-4">
+            <span className="font-sans text-3xl lg:text-4xl tracking-tightest">Trakity </span>
+            <span className="font-sans text-3xl lg:text-4xl tracking-tighter text-purple-300">Pomodoro</span>
+          </h1>
         </div>
 
         <div>
@@ -38,11 +41,11 @@ export default function Header({ className }) {
 
       {isOpen && (
         <div className="px-2 pb-3">
-          <Link to="/metrics" className="mt-1 block px-2 py-1 text-white font-semibold rounded hover:bg-teal-700">
+          <Link to="/metrics" className="mt-1 block px-2 py-1 text-white font-semibold rounded hover:bg-purple-600">
             See metrics
           </Link>
           <button
-            className="text-left w-full mt-1 block px-2 py-1 text-white font-semibold rounded hover:bg-teal-700"
+            className="text-left w-full mt-1 block px-2 py-1 text-white font-semibold rounded hover:bg-purple-600"
             onClick={() => console.log('Logged out')}
           >
             Logout

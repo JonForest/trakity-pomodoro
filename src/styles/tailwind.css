@@ -10320,6 +10320,10 @@ video {
   letter-spacing: 0.1em;
 }
 
+.tracking-tightest {
+  letter-spacing: -0.1em;
+}
+
 .select-none {
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -20343,6 +20347,10 @@ body,
     letter-spacing: 0.1em;
   }
 
+  .sm\:tracking-tightest {
+    letter-spacing: -0.1em;
+  }
+
   .sm\:select-none {
     -webkit-user-select: none;
        -moz-user-select: none;
@@ -30359,6 +30367,10 @@ body,
 
   .md\:tracking-widest {
     letter-spacing: 0.1em;
+  }
+
+  .md\:tracking-tightest {
+    letter-spacing: -0.1em;
   }
 
   .md\:select-none {
@@ -40379,6 +40391,10 @@ body,
     letter-spacing: 0.1em;
   }
 
+  .lg\:tracking-tightest {
+    letter-spacing: -0.1em;
+  }
+
   .lg\:select-none {
     -webkit-user-select: none;
        -moz-user-select: none;
@@ -50395,6 +50411,10 @@ body,
 
   .xl\:tracking-widest {
     letter-spacing: 0.1em;
+  }
+
+  .xl\:tracking-tightest {
+    letter-spacing: -0.1em;
   }
 
   .xl\:select-none {

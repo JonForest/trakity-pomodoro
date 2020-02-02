@@ -11,7 +11,7 @@ export default function Layout({ title, children, linkTo, linkText }) {
         <h1 className="text-3xl mb-2 text-center">{title}</h1>
       </div>
       <div className="flex-grow text-center mt-6">{children}</div>
-      <footer className="w-100 bg-teal-700 flex-shrink-0 flex justify-center py-2 h-12">
+      <footer className="w-100 bg-black flex-shrink-0 flex justify-center py-2 h-12">
         {linkTo && (
           <Link
             to={linkTo}

@@ -1,6 +1,10 @@
 module.exports = {
   theme: {
-    extend: {}
+    extend: {
+      letterSpacing: {
+        tightest: '-0.1em'
+      }
+    }
   },
   variants: {},
   plugins: []
